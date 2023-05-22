@@ -1,0 +1,36 @@
+.countries-container {
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    letter-spacing: 2px;
+    padding: 0 2% 70px 2%;
+}
+
+.countries-container h1 {
+    text-align: center;
+    padding-top: 60px;
+    margin-bottom: 100px;
+}
+
+.countries-box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 80px;
+    text-align: center;
+}
+
+.country {
+    transition: .3s;
+}
+
+.countries-box .country:hover {
+    transform: scale(1.1);
+}
+
+.countries-box img {
+    width: 250px;
+    transition: .3s;
+}
+
+.countries-box img:hover {
+    box-shadow: 0px 0px 100px #000000;
+}

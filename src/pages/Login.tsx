@@ -30,6 +30,7 @@ export default function Login() {
       .get('/timezone')
       .then((response) => {
         if (response.data.response.length !== 0) {
+            localStorage.setItem('key', inputValue)
             dispatch(loginResolver);
             navigate('/country');
             setLoading(false);
@@ -46,7 +47,7 @@ export default function Login() {
     setInputValue('');
   };
 
-  
+
   return (
     <div className="container">
       <div className="container-box">

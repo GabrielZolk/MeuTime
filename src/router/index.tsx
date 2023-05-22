@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/Login";
 import CountrySelection from "../pages/CountrySelection";
+import LeagueSelection from "../pages/LeagueSelection";
 
 const router = createBrowserRouter([
     {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
     {
         path: "/country",
         element: <CountrySelection />,
+    },
+    {
+        path: "/leagues",
+        element: <LeagueSelection />,
     }
 ]);
 
