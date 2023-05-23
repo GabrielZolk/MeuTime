@@ -23,17 +23,17 @@ export default function CountrySelection() {
 
   const key = String(localStorage.getItem('key'));
 
+  useEffect(() => {
   async function getData() {
     const api = createAPI(key);
     const { data } = await api.get('/countries')
     if (data) {
       const country = data.response.map(({ name, flag }: Country) => ({ name, flag }));
       setCountries(country)
-      console.log(country)
+    
     }
   }
 
-  useEffect(() => {
     getData()
   }, []);
 
@@ -43,13 +43,13 @@ export default function CountrySelection() {
     if (clickedElement.tagName === 'IMG') {
       const selectedCountry = clickedElement.alt;
       dispatch(setCountry(selectedCountry));
-      navigate('/leagues');
+      navigate('/seasons');
     }
   
     if (clickedElement.tagName === 'H4') {
       const selectedCountry = clickedElement.textContent;
       dispatch(setCountry(selectedCountry));
-      navigate('/leagues');
+      navigate('/seasons');
     }
   }
 
@@ -68,6 +68,6 @@ export default function CountrySelection() {
       </div>
     ) : (
       <NotAuthorized />
-    )
+    ) 
   );
 }

@@ -5,30 +5,38 @@ import NotAuthorized from '../components/NotAuthorized';
 import createAPI from '../services/api';
 import { useEffect, useState } from 'react';
 
+import './styles/LeagueSelection.css'
+
 type League = {
-  name: string;
-  logo: string;
-}
+  league: {
+    name: string;
+    logo: string;
+  };
+};
+
 
 export default function LeagueSelection() {
   const [leagues, setLeagues] = useState<League[]>([]);
 
   const isLogged = useSelector((state: RootState) => state.login);
   const country = useSelector((state: RootState) => state.country.value);
+  const season = useSelector((state: RootState) => state.season.value);
   
   const key = String(localStorage.getItem('key'));
 
+  useEffect(() => {
   async function getData() {
     const api = createAPI(key);
-    const { data } = await api.get(`/leagues?country=${country}`)
+    const { data } = await api.get(`/leagues?country=${country}&season=${season}`);
     if (data) {
-      const league = data.response.map(({ name, logo }: League) => ({ name, logo }));
-      setLeagues(league)
-      console.log(league)
+      const leagues = data.response.map((item: League) => ({
+        name: item.league.name,
+        logo: item.league.logo,
+      }));
+      setLeagues(leagues);
     }
   }
 
-  useEffect(() => {
     getData()
   }, []);
 
@@ -37,7 +45,7 @@ export default function LeagueSelection() {
       <div className='leagues-container'>
         <h1>Select League</h1>
         <div className='leagues-box'>
-          {leagues.map((league: League, index) => (
+          {leagues.map((league: any, index) => (
             <div className='league' key={index}>
               <img src={league.logo} alt={league.name} />
               <h4>{league.name}</h4>

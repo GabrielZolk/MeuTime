@@ -1,0 +1,35 @@
+.leagues-container {
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    letter-spacing: 2px;
+    padding: 0 2% 70px 2%;
+}
+
+.leagues-container h1 {
+    text-align: center;
+    padding-top: 60px;
+    margin-bottom: 100px;
+}
+
+.leagues-box {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 80px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.league {
+    transition: .3s;
+    height: fit-content;
+}
+
+.leagues-box .league:hover {
+    transform: scale(1.1);
+}
+
+.leagues-box img {
+    width: 150px;
+    transition: .3s;
+}
