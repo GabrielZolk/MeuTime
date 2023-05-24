@@ -1,4 +1,4 @@
-.leagues-container {
+.team-container {
     background: linear-gradient(to left, #2792D6, #052C62);
     min-height: 100vh;
     color: white;
@@ -6,13 +6,13 @@
     padding: 0 2% 70px 2%;
 }
 
-.leagues-container h1 {
+.team-container h1 {
     text-align: center;
     padding-top: 60px;
     margin-bottom: 100px;
 }
 
-.leagues-box {
+.team-box {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 80px;
@@ -21,16 +21,16 @@
     justify-content: center;
 }
 
-.league {
+.team {
     transition: .3s;
     height: fit-content;
 }
 
-.leagues-box .league:hover {
+.team-box .team:hover {
     transform: scale(1.1);
 }
 
-.leagues-box img {
+.team-box img {
     width: 150px;
     transition: .3s;
 }

@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import CountrySelection from "../pages/CountrySelection";
 import LeagueSelection from "../pages/LeagueSelection";
 import SeasonSelection from "../pages/SeasonSelection";
+import TeamSelection from "../pages/TeamSelection";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
     {
         path: "/leagues",
         element: <LeagueSelection />,
+    },
+    {
+        path: "/teams",
+        element: <TeamSelection />,
     }
 ]);
 

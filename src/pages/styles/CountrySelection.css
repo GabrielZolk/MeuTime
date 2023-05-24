@@ -2,6 +2,7 @@
     background: linear-gradient(to left, #2792D6, #052C62);
     color: white;
     letter-spacing: 2px;
+    min-height: 100vh;
     padding: 0 2% 70px 2%;
 }
 

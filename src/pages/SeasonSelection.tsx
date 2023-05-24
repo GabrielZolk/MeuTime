@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import createAPI from '../services/api';
 import { useEffect, useState } from 'react';
 
-// import './styles/SeasonSelection.css'
+import './styles/SeasonSelection.css'
 import { setSeason } from '../redux/seasonSlice';
 
 type Season = {
