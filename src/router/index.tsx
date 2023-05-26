@@ -4,6 +4,7 @@ import CountrySelection from "../pages/CountrySelection";
 import LeagueSelection from "../pages/LeagueSelection";
 import SeasonSelection from "../pages/SeasonSelection";
 import TeamSelection from "../pages/TeamSelection";
+import TeamDetails from "../pages/TeamDetails";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     {
         path: "/teams",
         element: <TeamSelection />,
+    },
+    {
+        path: "/team",
+        element: <TeamDetails />,
     }
 ]);
 

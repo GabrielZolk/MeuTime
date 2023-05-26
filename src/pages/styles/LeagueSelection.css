@@ -24,6 +24,7 @@
 .league {
     transition: .3s;
     height: fit-content;
+    cursor: pointer;
 }
 
 .leagues-box .league:hover {
@@ -33,4 +34,14 @@
 .leagues-box img {
     width: 150px;
     transition: .3s;
+}
+
+.loading {
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    min-height: 100vh;
 }

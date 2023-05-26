@@ -21,6 +21,7 @@
 
 .country {
     transition: .3s;
+    cursor: pointer;
 }
 
 .countries-box .country:hover {
@@ -34,4 +35,14 @@
 
 .countries-box img:hover {
     box-shadow: 0px 0px 100px #000000;
+}
+
+.loading {
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    min-height: 100vh;
 }

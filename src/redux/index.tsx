@@ -3,6 +3,7 @@ import loginReducer from "./loginSlice";
 import countryReducer from "./countrySlice";
 import seasonReducer from "./seasonSlice";
 import leagueReducer from "./leagueSlice";
+import teamReducer from "./teamSlice";
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         country: countryReducer,
         season: seasonReducer,
         league: leagueReducer,
+        team: teamReducer,
     },
 })
 

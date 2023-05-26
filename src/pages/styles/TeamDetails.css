@@ -1,0 +1,132 @@
+.stats-container {
+    background: linear-gradient(to left, #2792D6, #052C62);
+    min-height: 100vh;
+    color: white;
+    letter-spacing: 2px;
+    padding: 0 2% 70px 2%;
+}
+
+.stats-container h1 {
+    font-size: 5rem;
+    text-align: center;
+    padding-top: 60px;
+    margin-bottom: 100px;
+}
+
+.players-box .player-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 40px;
+    text-align: center;
+}
+
+.stats-box .players-box,
+.stats-box .team-stats {
+    margin-top: 150px;
+}
+
+.players-box .player-card {
+    margin-bottom: 70px;
+    border: 4px solid white;
+    border-radius: 10px;
+    background-color: black;
+    height: 90%;
+    transition: .3s;
+}
+
+.players-box .player-card:hover {
+    transform: scale(1.1);
+}
+
+.player-card .field {
+    border: 2px solid #2792D6;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.205);
+    width: 80%;
+    height: 40px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-card .field:nth-child(2) {
+    margin-top: 10%;
+}
+
+.players-box .player-card img {
+    width: 85%;
+    border-radius: 10px;
+    margin-top: 20px;
+    border: 2px solid #2792D6;
+}
+
+.players-box .player-card p {
+    font-size: 90%;
+}
+
+.players-box h4,
+.stats-box .team-stats h4 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 70px;
+}
+
+.stats-table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: 0 auto;
+}
+  
+.stats-table th,
+.stats-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+  
+.stats-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+    color: black;
+}
+
+.chart-container h4 {
+    text-align: center;
+    margin-top: 170px;
+    margin-bottom: 40px;
+    font-size: 4rem;
+}
+
+.goals-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading {
+    font-size: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    min-height: 100vh;
+}
+  
+@media (max-width: 1188px) {
+    .players-box .player-card .field:nth-child(2) p {
+        font-size: 70%;
+    }
+}
+
+@media (max-width: 995px) {
+    .players-box .player-card {
+        height: 85%;
+    }
+
+    .players-box .player-card .field:nth-child(2) p {
+        font-size: 60%;
+    }
+}

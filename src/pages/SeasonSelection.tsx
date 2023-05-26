@@ -15,6 +15,7 @@ type Season = {
 
 export default function SeasonSelection() {
   const [seasons, setSeasons] = useState<Season[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isLogged = useSelector((state: RootState) => state.login);
 
@@ -31,7 +32,7 @@ export default function SeasonSelection() {
         setSeasons(seasons);
       }
     }
-  
+    setIsLoading(false);
     getData();
   }, []);
   
@@ -41,6 +42,10 @@ export default function SeasonSelection() {
     const selectedSeason = clickedElement.textContent
     dispatch(setSeason(selectedSeason));
     navigate('/leagues');
+  }
+
+  if (isLoading) {
+    return <div className='loading'>Loading...</div>;
   }
 
   return (

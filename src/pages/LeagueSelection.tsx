@@ -18,6 +18,7 @@ type League = {
 
 export default function LeagueSelection() {
   const [leagues, setLeagues] = useState<League[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isLogged = useSelector((state: RootState) => state.login);
   const country = useSelector((state: RootState) => state.country.value);
@@ -45,6 +46,7 @@ export default function LeagueSelection() {
       setLeagues(leagues);
       console.log(leagues)
     }
+    setIsLoading(false);
   }
 
     getData()
@@ -76,8 +78,9 @@ export default function LeagueSelection() {
     }
   }
   
-
-  
+  if (isLoading) {
+    return <div className='loading'>Loading...</div>;
+  }
 
   return (
     isLogged ? (

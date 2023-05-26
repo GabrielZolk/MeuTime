@@ -16,6 +16,7 @@ type Country = {
 
 export default function CountrySelection() {
   const [countries, setCountries] = useState<Country[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const isLogged = useSelector((state: RootState) => state.login);
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ export default function CountrySelection() {
       setCountries(country)
     
     }
+    setIsLoading(false);
   }
 
     getData()
@@ -51,6 +53,10 @@ export default function CountrySelection() {
       dispatch(setCountry(selectedCountry));
       navigate('/seasons');
     }
+  }
+
+  if (isLoading) {
+    return <div className='loading'>Loading...</div>;
   }
 
   return (
