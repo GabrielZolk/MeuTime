@@ -14,42 +14,44 @@ type League = {
   id: number;
 };
 
-
-
 export default function LeagueSelection() {
   const [leagues, setLeagues] = useState<League[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const isLogged = useSelector((state: RootState) => state.login);
   const country = useSelector((state: RootState) => state.country.value);
   const season = useSelector((state: RootState) => state.season.value);
   
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const key = String(localStorage.getItem('key'));
 
   useEffect(() => {
-  async function getData() {
-    const api = createAPI(key);
-    const { data } = await api.get(`/leagues?country=${country}&season=${season}`);
-    if (data) {
-      console.log(data)
-      console.log(data.response)
-      const leagues = data.response.map((item: any) => ({
-        name: item.league.name,
-        logo: item.league.logo,
-        id: item.league.id,
-      }));
-      
-      
-      setLeagues(leagues);
-      console.log(leagues)
+    async function getData() {
+      try {
+        const api = createAPI(key);
+        const { data } = await api.get(`/leagues?country=${country}&season=${season}`);
+  
+        if (data && data.response && data.response.length > 0) {
+          const leagues = data.response.map((item: any) => ({
+            name: item.league.name,
+            logo: item.league.logo,
+            id: item.league.id,
+          }));
+  
+          setLeagues(leagues);
+        } else {
+          setError('There was no response from the API. Please check your key and try again.');
+        }
+      } catch (error) {
+        setError('Error loading leagues. Please check your connection and try again.');
+      }
+  
+      setIsLoading(false);
     }
-    setIsLoading(false);
-  }
-
-    getData()
+  
+    getData();
   }, []);
 
   function handleClick(event: any) {
@@ -78,33 +80,38 @@ export default function LeagueSelection() {
     }
   }
   
+  if (!isLogged) {
+    return <NotAuthorized />;
+  }
+
   if (isLoading) {
     return <div className='loading'>Loading...</div>;
   }
-
-  return (
-    isLogged ? (
-      <div className='leagues-container'>
-        <h1>Select League</h1>
-        <div className='leagues-box'>
-          {leagues.length !== 0 ? (
-            leagues.map((league: any, index) => (
-              <div onClick={handleClick} className='league' key={index}>
-                <img src={league.logo} alt={league.name} />
-                <h4>{league.name}</h4>
-              </div>
-            ))
-          ) : (
-            <div>
-            <h4>Não há ligas disponíveis no período selecionado.</h4>
-            <h4>Por favor, selecione outra temporada</h4>
-            <button onClick={() => window.history.back()}>Voltar para seleção de período</button>
-            </div>
-          )}
-        </div>
+  
+  if (error) {
+    return <div className='error'>{error}</div>;
+  }
+  
+return (
+  <div className='leagues-container'>
+    <h1>Select League</h1>
+    {leagues.length !== 0 ? (
+      <div className='leagues-box'>
+        {leagues.map((league: any, index) => (
+          <div onClick={handleClick} className='league' key={index}>
+            <img src={league.logo} alt={league.name} />
+            <h4>{league.name}</h4>
+          </div>
+        ))}
       </div>
     ) : (
-      <NotAuthorized />
-    )
-  );
+      <div className='no-available'>
+        <h4>There are no leagues available in the selected period.</h4>
+        <h4>Please select another season.</h4>
+        <button onClick={() => window.history.back()}>Return to period selection.</button>
+      </div>
+    )}
+  </div>
+);
+
 }

@@ -1,0 +1,19 @@
+.not {
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    min-height: 100vh;
+}
+
+.not button {
+    margin-top: 50px;
+    padding: 20px 60px;
+    font-size: 2rem;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}

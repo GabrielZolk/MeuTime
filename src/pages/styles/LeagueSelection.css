@@ -45,3 +45,22 @@
     color: white;
     min-height: 100vh;
 }
+
+.error {
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to left, #2792D6, #052C62);
+    color: white;
+    min-height: 100vh;
+}
+
+.no-available {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100vw;
+}

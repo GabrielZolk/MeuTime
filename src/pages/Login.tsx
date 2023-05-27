@@ -51,12 +51,12 @@ export default function Login() {
   return (
     <div className="container">
       <div className="container-box">
-        <h1>Insira sua API-KEY para fazer Login</h1>
+        <h1>Enter your API-KEY to log in.</h1>
         {loading ? (
           <h3>Loading...</h3>
         ) : (
           <span className={response === 0 ? 'validate visible' : 'validate'}>
-            Chave incorreta ou inválida
+            Incorrect or invalid key.
           </span>
         )}
         <form onSubmit={handleSubmit}>
