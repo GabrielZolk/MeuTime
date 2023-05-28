@@ -42,6 +42,7 @@
     border: none;
     transition: .5s;
     color: #2792D6;
+    background-color: #ffffff;
 }
 
 .container-box form button:hover {
