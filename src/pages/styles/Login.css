@@ -59,3 +59,43 @@
 .visible {
     display: block;
 }
+
+@media (max-width: 610px) {
+    .container-box-login h1 {
+        font-size: 2.7rem;
+    }
+
+    .container-box-login {
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 530px) {
+    .container-box-login h1 {
+        font-size: 2rem;
+    }
+
+    .container-box-login {
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 370px) {
+    .container-box-login h1 {
+        font-size: 1.6rem;
+    }
+
+    .container-box-login {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 295px) {
+    .container-box-login h1 {
+        font-size: 1.6rem;
+    }
+
+    .container-box-login {
+        max-width: 180px;
+    }
+}
