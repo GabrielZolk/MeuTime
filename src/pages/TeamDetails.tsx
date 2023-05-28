@@ -6,6 +6,7 @@ import createAPI from '../services/api';
 import { useEffect, useState } from 'react';
 
 import './styles/TeamDetails.css'
+import Header from '../components/Header';
 
 type Team = {
     loses: number,
@@ -32,7 +33,7 @@ export default function TeamDetails() {
             try {
                 const api = createAPI(key);
                 const { data } = await api.get(`/players?season=${season}&league=${league}&team=${team}`);
-                if (data > 0) {
+                if (data) {
                     const stats = data.response.map((item: any) => ({
                         name: item.player.name,
                         age: item.player.age,
@@ -125,8 +126,12 @@ export default function TeamDetails() {
 
             }
         }
-        getData();
-    }, []);
+        const canvas = document.getElementById('goals-chart') as HTMLCanvasElement;
+
+        if (canvas) {
+            getData();
+        }
+    }, [team, season, league]);
 
     if (!isLogged) {
         return <NotAuthorized />;
@@ -141,58 +146,64 @@ export default function TeamDetails() {
     }
 
     return (
-        <div className="stats-container">
-            <h1>Team Stats</h1>
-            <div className="stats-box">
-                <div className="players-box">
-                    <h4>Players: Name, Age, Nationality</h4>
-                    <div className="player-cards">
-                        {teamPlayers.map((player: any, index) => (
-                            <div className="player-card" key={index}>
-                                <img src={player.photo} alt={player.name} />
-                                <div className="field">
-                                    <p>{player.name}</p>
+        <div>
+            <Header children={key} />
+            <div className="stats-container">
+                <h1>Team Stats</h1>
+                <div className="stats-box">
+                    <div className="players-box">
+                        <h4>Players: Name, Age, Nationality</h4>
+                        <div className="player-cards">
+                            {teamPlayers.map((player: any, index) => (
+                                <div className="player-card" key={index}>
+                                    <img src={player.photo} alt={player.name} />
+                                    <div className="field">
+                                        <p>{player.name}</p>
+                                    </div>
+                                    <div className="field">
+                                        <p>{player.age}</p>
+                                    </div>
+                                    <div className="field">
+                                        <p>{player.nationality}</p>
+                                    </div>
                                 </div>
-                                <div className="field">
-                                    <p>{player.age}</p>
-                                </div>
-                                <div className="field">
-                                    <p>{player.nationality}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="team-stats">
-                    <h4>Stats: Played, Wins, Loses, Draws</h4>
-                    <table className="stats-table">
-                        <thead>
-                            <tr>
-                                <th>Played</th>
-                                <th>Wins</th>
-                                <th>Loses</th>
-                                <th>Draws</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {teamStats.map((stats: any, index) => (
-                                <tr key={index} className="stats">
-                                    <td>{stats.played}</td>
-                                    <td>{stats.wins}</td>
-                                    <td>{stats.loses}</td>
-                                    <td>{stats.draws}</td>
-                                </tr>
                             ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div className="chart-container">
-                    <h4>Goal by Time</h4>
-                    <div className="goals-chart">
-                        <canvas id="goals-chart"></canvas>
+                        </div>
+                    </div>
+                    <div className="team-stats">
+                        <h4>Stats: Played, Wins, Loses, Draws</h4>
+                        <table className="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>Played</th>
+                                    <th>Wins</th>
+                                    <th>Loses</th>
+                                    <th>Draws</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {teamStats.map((stats: any, index) => (
+                                    <tr key={index} className="stats">
+                                        <td>{stats.played}</td>
+                                        <td>{stats.wins}</td>
+                                        <td>{stats.loses}</td>
+                                        <td>{stats.draws}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="chart-container">
+                        <h4>Goal by Time</h4>
+                        <div className="goals-chart">
+                            <canvas id="goals-chart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+
+
+

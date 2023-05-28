@@ -1,4 +1,4 @@
-.container {
+.container-login {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,18 +7,18 @@
     background: linear-gradient(to left, #2792D6, #052C62)
 }
 
-.container-box {
+.container-box-login {
     max-width: 550px;
     text-align: center;
 }
 
-.container-box h1 {
+.container-box-login h1 {
     font-size: 4rem;
     margin-bottom: 50px;
     color: white;
 }
 
-.container-box form input {
+.container-box-login form input {
     margin-right: 20px;
     width: 100%;
     height: 50px;
@@ -29,11 +29,11 @@
     border: red;
 }
 
-.container-box form input:focus {
+.container-box-login form input:focus {
     outline: none;
 }
 
-.container-box form button {
+.container-box-login form button {
     width: 60%;
     height: 50px;
     margin-top: 20px;
@@ -45,7 +45,7 @@
     background-color: #ffffff;
 }
 
-.container-box form button:hover {
+.container-box-login form button:hover {
     background-color: rgb(184, 184, 184);
 }
 

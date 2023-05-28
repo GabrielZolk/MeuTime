@@ -78,14 +78,14 @@
     width: 70%;
     margin: 0 auto;
 }
-  
+
 .stats-table th,
 .stats-table td {
     border: 1px solid black;
     padding: 8px;
     text-align: center;
 }
-  
+
 .stats-table th {
     background-color: #f2f2f2;
     text-align: center;
@@ -124,7 +124,7 @@
     color: white;
     min-height: 100vh;
 }
-  
+
 @media (max-width: 1188px) {
     .players-box .player-card .field:nth-child(2) p {
         font-size: 70%;
@@ -138,5 +138,76 @@
 
     .players-box .player-card .field:nth-child(2) p {
         font-size: 60%;
+    }
+}
+
+@media (max-width: 789px) {
+    .players-box .player-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stats-container h1 {
+        font-size: 4rem;
+    }
+
+    .players-box h4,
+    .stats-box .team-stats h4 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 579px) {
+    .players-box .player-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-container h1 {
+        font-size: 3rem;
+    }
+
+    .players-box h4,
+    .stats-box .team-stats h4 {
+        font-size: 1.7rem;
+    }
+
+    .players-box .player-card {
+        height: 91%;
+    }
+}
+
+@media (max-width: 479px) {
+
+    .players-box h4,
+    .stats-box .team-stats h4 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 379px) {
+    .players-box .player-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .stats-container h1 {
+        font-size: 2.4rem;
+    }
+
+    .players-box h4,
+    .stats-box .team-stats h4 {
+        font-size: 1.2rem;
+    }
+
+    .players-box .player-card {
+        width: 80%;
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 293px) {
+    .stats-table th,
+    .stats-table td {
+        padding: 6px;
+        text-align: center;
+        font-size: .8rem;
     }
 }

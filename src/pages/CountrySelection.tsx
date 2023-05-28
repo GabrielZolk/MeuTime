@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import NotAuthorized from '../components/NotAuthorized';
 
 import createAPI from '../services/api';
@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 
 import './styles/CountrySelection.css'
 import { setCountry } from '../redux/countrySlice';
+import Header from '../components/Header';
 
 type Country = {
   name: string;
@@ -20,31 +21,38 @@ export default function CountrySelection() {
   const [error, setError] = useState('');
 
   const isLogged = useSelector((state: RootState) => state.login);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const key = String(localStorage.getItem('key'));
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const api = createAPI(key);
-        const { data } = await api.get('/countries');
-        if (data && data.response && data.response.length > 0) {
-          const country = data.response.map(({ name, flag }: Country) => ({ name, flag }));
-          setCountries(country);
-        } else {
-          setError('There was no response from the API. Please check your key and try again.');
-        }
-        setIsLoading(false);
-      } catch (error) {  
-        setError('Error loading Countries. Please check your connection and try again.');
-        setIsLoading(false);
+  async function getData() {
+    try {
+      const api = createAPI(key);
+      const { data } = await api.get('/countries');
+      if (data) {
+        const country = data.response.map(({ name, flag }: Country) => ({ name, flag }));
+        setCountries(country);
+      } else {
+        setError('There was no response from the API. Please check your key and try again.');
       }
+      setIsLoading(false);
+    } catch (error) {
+      setError('Error loading Countries. Please check your connection and try again.');
+      setIsLoading(false);
     }
+  }
 
+  useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    if (location.state?.from === '/seasons') {
+      getData();
+    }
+  }, [location]);
 
   function handleClick(event: any) {
     const clickedElement = event.target;
@@ -75,15 +83,18 @@ export default function CountrySelection() {
   }
 
   return (
-    <div className='countries-container'>
-      <h1>Select country</h1>
-      <div className='countries-box'>
-        {countries.map((country: Country, index) => (
-          <div onClick={handleClick} className='country' key={index}>
-            <img src={country.flag} alt={country.name} />
-            <h4>{country.name}</h4>
-          </div>
-        ))}
+    <div>
+      <Header children={key} />
+      <div className='countries-container'>
+        <h1>Select country</h1>
+        <div className='countries-box'>
+          {countries.map((country: Country, index) => (
+            <div onClick={handleClick} className='country' key={index}>
+              <img src={country.flag} alt={country.name} />
+              <h4>{country.name}</h4>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

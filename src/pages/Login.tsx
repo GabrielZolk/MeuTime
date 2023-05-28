@@ -49,8 +49,8 @@ export default function Login() {
 
 
   return (
-    <div className="container">
-      <div className="container-box">
+    <div className="container-login">
+      <div className="container-box-login">
         <h1>Enter your API-KEY to log in.</h1>
         {loading ? (
           <h3>Loading...</h3>

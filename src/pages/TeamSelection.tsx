@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../redux';
 import NotAuthorized from '../components/NotAuthorized';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import createAPI from '../services/api';
 import { useEffect, useState } from 'react';
 
 import './styles/TeamSelection.css'
 import { setTeam } from '../redux/teamSlice';
+import Header from '../components/Header';
 
 type Team = {
   name: string;
@@ -28,29 +29,37 @@ export default function TeamSelection() {
   const dispatch = useDispatch();
   const key = String(localStorage.getItem('key'));
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const api = createAPI(key);
-        const { data } = await api.get(`/teams?country=${country}&season=${season}&league=${league}`);
-        if (data && data.response && data.response.length > 0) {
-          const team = data.response.map((item: any) => ({
-            name: item.team.name,
-            logo: item.team.logo,
-            id: item.team.id,
-          }));
-          setTeams(team);
-        } else {
-          setError('There was no response from the API. Please check your key and try again.');
-        }
-      } catch (error) {
-        setError('Error loading teams. Please check your connection and try again.');
-      }
-      setIsLoading(false);
-    }
+  const location = useLocation();
 
+  async function getData() {
+    try {
+      const api = createAPI(key);
+      const { data } = await api.get(`/teams?country=${country}&season=${season}&league=${league}`);
+      if (data && data.response && data.response.length > 0) {
+        const team = data.response.map((item: any) => ({
+          name: item.team.name,
+          logo: item.team.logo,
+          id: item.team.id,
+        }));
+        setTeams(team);
+      } else {
+        setError('There was no response from the API. Please check your key and try again.');
+      }
+    } catch (error) {
+      setError('Error loading teams. Please check your connection and try again.');
+    }
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
     getData()
   }, []);
+
+  useEffect(() => {
+    if (location.state?.from === '/team') {
+      getData();
+    }
+  }, [location]);
 
   function handleClick(event: any) {
     const clickedElement = event.target;
@@ -91,15 +100,18 @@ export default function TeamSelection() {
   }
 
   return (
-    <div className='team-container'>
-      <h1>Select Team</h1>
-      <div className='team-box'>
-        {teams.map((team: any, index) => (
-          <div onClick={handleClick} className='team' key={index}>
-            <img src={team.logo} alt={team.name} />
-            <h4>{team.name}</h4>
-          </div>
-        ))}
+    <div>
+      <Header children={key} />
+      <div className='team-container'>
+        <h1>Select Team</h1>
+        <div className='team-box'>
+          {teams.map((team: any, index) => (
+            <div onClick={handleClick} className='team' key={index}>
+              <img src={team.logo} alt={team.name} />
+              <h4>{team.name}</h4>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

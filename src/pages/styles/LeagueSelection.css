@@ -64,3 +64,41 @@
     margin: 0 auto;
     width: 100vw;
 }
+
+@media (max-width: 1189px) {
+    .leagues-box {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .leagues-box img {
+        width: 100px;
+    }
+}
+
+@media (max-width: 880px) {
+    .leagues-box {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 670px) {
+    .leagues-box {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .leagues-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 329px) {
+    .leagues-box {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .leagues-box img {
+        width: 150px;
+    }
+}

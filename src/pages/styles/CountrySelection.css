@@ -56,3 +56,45 @@
     color: white;
     min-height: 100vh;
 }
+
+@media (max-width: 1189px) {
+    .countries-box img {
+        width: 150px;
+    }
+}
+
+@media (max-width: 970px) {
+    .countries-box {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .countries-box img {
+        width: 200px;
+    }
+}
+
+@media (max-width: 810px) {
+    .countries-box img {
+        width: 150px;
+    }
+}
+
+@media (max-width: 665px) {
+    .countries-box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .countries-box img {
+        width: 200px;
+    }
+}
+
+@media (max-width: 520px) {
+    .countries-box {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .countries-box img {
+        width: 200px;
+    }
+}
