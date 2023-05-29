@@ -46,9 +46,7 @@ export default function TeamDetails() {
                 }
             } catch (error) {
                 setError('Error loading players. Please check your connection and try again.');
-            } finally {
-                setIsLoading(false);
-            }
+            } 
         }
 
         getData();
@@ -123,15 +121,12 @@ export default function TeamDetails() {
 
                     context.fillText(labelText, x + barWidth / 1 - textWidth / 2, chartHeight + 65);
                 }
-
+                setIsLoading(false);
             }
         }
-        const canvas = document.getElementById('goals-chart') as HTMLCanvasElement;
-
-        if (canvas) {
-            getData();
-        }
-    }, [team, season, league]);
+        
+        getData();
+    }, []);
 
     if (!isLogged) {
         return <NotAuthorized />;
@@ -204,6 +199,3 @@ export default function TeamDetails() {
         </div>
     );
 }
-
-
-

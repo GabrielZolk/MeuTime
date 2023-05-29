@@ -173,6 +173,10 @@
     .players-box .player-card {
         height: 91%;
     }
+
+    #goals-chart {
+        width: 400px;
+    }
 }
 
 @media (max-width: 479px) {
@@ -180,6 +184,10 @@
     .players-box h4,
     .stats-box .team-stats h4 {
         font-size: 1.4rem;
+    }
+
+    #goals-chart {
+        width: 300px;
     }
 }
 
@@ -201,6 +209,10 @@
         width: 80%;
         margin: 30px auto;
     }
+
+    #goals-chart {
+        width: 250px;
+    }
 }
 
 @media (max-width: 293px) {
@@ -209,5 +221,9 @@
         padding: 6px;
         text-align: center;
         font-size: .8rem;
+    }
+
+    #goals-chart {
+        width: 220px;
     }
 }
