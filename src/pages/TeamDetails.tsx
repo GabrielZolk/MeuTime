@@ -121,11 +121,11 @@ export default function TeamDetails() {
 
                     context.fillText(labelText, x + barWidth / 1 - textWidth / 2, chartHeight + 65);
                 }
-                setIsLoading(false);
             }
+            
         }
-        
         getData();
+        setIsLoading(false);
     }, []);
 
     if (!isLogged) {
